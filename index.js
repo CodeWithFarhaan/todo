@@ -13,6 +13,7 @@ app.get('/', function (req, res) {
     });
 });
 
+
 app.post('/create', function (req, res) {
     const filename = req.body.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
     fs.writeFile(`./files/${filename}.txt`, req.body.details, function (err) {
@@ -23,5 +24,12 @@ app.post('/create', function (req, res) {
         res.redirect('/');
     });
 });
-    
+
+app.get('/file/:filename', function (req, res) {
+    fs.readFile(`./files/${ req.params.filename }`, "utf-8", function (err, filedata) {
+        res.render('show', { filename: req.params.filename, filedata: filedata });
+    });
+});
+
+
 app.listen(3000);
