@@ -18,13 +18,16 @@
       </form>
     </div>
     <div class="tasks p-10 flex gap-3 flex-wrap">
-      <% if(files.length> 0){ %>
+      <% if(files.length > 0){ %>
       <% files.forEach(function(val) { %>
       <div class="task min-w-72 px-3 py-4 bg-zinc-800 rounded-md">
         <h1 class="text-3xl text-white tracking-tighter">
           <%= val %>
         </h1>
-        <a class="inline-block mt-3 text-blue-500" href="/file/<%= val %>">Read More.</a>
+        <div class="flex w-full justify-between items-center mt-3">
+          <a class="inline-block text-blue-500" href="/file/<%= val %>">Read More.</a>
+          <a class="text-zinc-600" href="/edit/<%= val %>">Edit FileName</a>
+        </div>
       </div>
       <% }) %>
       <% } else { %>
